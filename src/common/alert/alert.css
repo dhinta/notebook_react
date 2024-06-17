@@ -1,0 +1,9 @@
+.alert {
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+}
+
+.alert-error {
+    background-color: rgb(254 242 242);
+    color: rgb(185 28 28);
+}
