@@ -4,22 +4,34 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import './App.css';
+import { ProtectedRoutes } from './components/routes/protected-routes';
+import { StrictlyPublicRoutes } from './components/routes/strictly-public';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Home } from './pages/home/home';
 import { Signup } from './pages/signup/signup';
 
 const router = createBrowserRouter([
   {
-    path: '/', // Reverse protect route
-    element: <Home />,
+    element: <StrictlyPublicRoutes />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/signup',
+        element: <Signup />,
+      },
+    ],
   },
   {
-    path: '/signup', // Reverse protect route
-    element: <Signup />,
-  },
-  {
-    path: '/dashboard',
-    element: <Dashboard />,
+    element: <ProtectedRoutes />,
+    children: [
+      {
+        path: '/dashboard',
+        element: <Dashboard />,
+      },
+    ],
   },
   {
     path: '*',
