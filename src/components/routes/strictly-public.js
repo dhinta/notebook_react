@@ -1,4 +1,5 @@
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { PublicHeader } from '../headers/public-header';
 
 export function StrictlyPublicRoutes() {
   const location = useLocation();
@@ -6,6 +7,9 @@ export function StrictlyPublicRoutes() {
   return token ? (
     <Navigate to="/dashboard" replace state={{ from: location }} />
   ) : (
-    <Outlet />
+    <>
+      <PublicHeader />
+      <Outlet />
+    </>
   );
 }

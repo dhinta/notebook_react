@@ -6,8 +6,11 @@ import {
 import './App.css';
 import { ProtectedRoutes } from './components/routes/protected-routes';
 import { StrictlyPublicRoutes } from './components/routes/strictly-public';
+import { ContactUs } from './pages/contact-us/contact-us';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Home } from './pages/home/home';
+import { Settings } from './pages/settings/settings';
+import { Signout } from './pages/signout/signout';
 import { Signup } from './pages/signup/signup';
 
 const router = createBrowserRouter([
@@ -31,7 +34,19 @@ const router = createBrowserRouter([
         path: '/dashboard',
         element: <Dashboard />,
       },
+      {
+        path: '/settings',
+        element: <Settings />,
+      },
+      {
+        path: '/signout',
+        element: <Signout />,
+      },
     ],
+  },
+  {
+    path: '/contact-us',
+    element: <ContactUs />,
   },
   {
     path: '*',
