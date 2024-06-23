@@ -54,6 +54,8 @@ const router = createBrowserRouter([
   },
 ]);
 
+// Create an enhanced history that syncs navigation events with the store
+
 function App() {
   return <RouterProvider router={router} />;
 }

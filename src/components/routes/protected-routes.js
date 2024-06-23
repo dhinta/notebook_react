@@ -1,23 +1,32 @@
-import { useDispatch } from 'react-redux';
-import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { fetchUserEffect } from '../../data-access/users/user.effects';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Outlet, useNavigate } from 'react-router-dom';
+import { Loader } from '../../common/loader/loader';
+import { fetchUserEffect } from '../../data-access/auth/auth.effects';
+import { selectUser } from '../../data-access/auth/auth.selector';
 import { PrivateHeader } from '../headers/private-header';
 
 export function ProtectedRoutes() {
   const dispatch = useDispatch();
-  const location = useLocation();
+  const navigate = useNavigate();
+  const user = useSelector(selectUser);
+
   const token = sessionStorage.getItem('token');
 
-  if (!token) {
-    return <Navigate to="/" replace state={{ from: location }} />;
-  }
+  useEffect(() => {
+    if (token) {
+      dispatch(fetchUserEffect(token));
+    } else {
+      navigate('/', { replace: true });
+    }
+  }, [dispatch, navigate, token]);
 
-  dispatch(fetchUserEffect(token));
-
-  return (
+  return token && user ? (
     <>
       <PrivateHeader />
       <Outlet />
     </>
+  ) : (
+    <Loader />
   );
 }

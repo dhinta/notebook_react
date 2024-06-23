@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../data-access/users/user.reducer';
+import { logout } from '../../data-access/auth/auth.reducer';
 
 export function Signout() {
   const dispatch = useDispatch();

@@ -17,7 +17,7 @@ export function PrivateHeader() {
             />
           </Link>
         </div>
-        <div className="hidden sm:ml-6 sm:block">
+        <div className="ml-6">
           <div className="flex space-x-4">
             <Link
               to={'/contact-us'}
