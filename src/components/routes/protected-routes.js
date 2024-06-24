@@ -27,6 +27,8 @@ export function ProtectedRoutes() {
       <Outlet />
     </>
   ) : (
-    <Loader />
+    <div className="h-screen flex items-center justify-center">
+      <Loader />
+    </div>
   );
 }
