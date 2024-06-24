@@ -3,6 +3,7 @@ import { Modal } from '../../common/modal/modal';
 import { AddNote } from '../../components/add-note/add-note';
 import { ListNotes } from '../../components/list-notes/list-notes';
 import { axios } from '../../config/axios';
+import { useSharedWorker } from '../../hooks/shared-worker';
 
 export const NoteAction = {
   LIST: 'list',
@@ -25,6 +26,7 @@ export const NotesContext = createContext({});
 export function Dashboard() {
   const [showAddNoteModal, setShowAddNoteModal] = useState(false);
   const [notes, dispatch] = useReducer(reducer, []);
+  const { worker } = useSharedWorker(fetchNotes);
 
   async function fetchNotes() {
     try {
@@ -69,7 +71,11 @@ export function Dashboard() {
           onClose={() => {
             setShowAddNoteModal(false);
           }}
-          refreshNotes={fetchNotes}
+          refreshNotes={() => {
+            worker.port.postMessage({
+              type: 'refresh-notes',
+            });
+          }}
         />
       </Modal>
     </NotesContext.Provider>
