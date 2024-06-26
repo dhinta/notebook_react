@@ -9,6 +9,7 @@ import { StrictlyPublicRoutes } from './components/routes/strictly-public';
 import { ContactUs } from './pages/contact-us/contact-us';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { Home } from './pages/home/home';
+import { NoteDetails } from './pages/note-details/note-details';
 import { Settings } from './pages/settings/settings';
 import { Signout } from './pages/signout/signout';
 import { Signup } from './pages/signup/signup';
@@ -33,6 +34,15 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard />,
+      },
+      {
+        path: '/notes',
+        children: [
+          {
+            path: ':url/details',
+            element: <NoteDetails />,
+          },
+        ],
       },
       {
         path: '/settings',

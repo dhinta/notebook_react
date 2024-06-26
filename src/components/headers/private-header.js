@@ -10,11 +10,7 @@ export function PrivateHeader() {
             className="rounded-md px-3 py-2 text-sm font-medium"
             aria-current="page"
           >
-            <img
-              className="h-8 w-auto"
-              src="./logo512.png"
-              alt="Your Company"
-            />
+            <img className="h-8 w-auto" src="/logo512.png" alt="Your Company" />
           </Link>
         </div>
         <div className="ml-6">
